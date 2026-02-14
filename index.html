@@ -86,12 +86,26 @@ button{
     <!-- Apni pics ke file names yahan likhna -->
     <img src="pic1.jpg">
     <img src="pic2.jpg">
-    <img src="pic3.jpg">
   </div>
+</button>
+/* Moving NO button */
+const noBtn = document.getElementById("noBtn");
 
-  <button id="noBtn" style="position:absolute;">
+function moveButton(){
+  const maxX = window.innerWidth - noBtn.offsetWidth;
+  const maxY = window.innerHeight - noBtn.offsetHeight;
+
+  const randomX = Math.floor(Math.random() * maxX);
+  const randomY = Math.floor(Math.random() * maxY);
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
     NO
-  </button>
+  
 
 </div>
 
