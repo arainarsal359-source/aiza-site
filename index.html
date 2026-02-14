@@ -6,71 +6,75 @@
 
 <style>
 body{
-  margin:0;
-  text-align:center;
-  font-family:Arial, sans-serif;
-  background:linear-gradient(135deg,#ff9ccf,#ffffff);
-  overflow:hidden;
+    margin:0;
+    text-align:center;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffccd5,#fff0f3);
+    overflow:hidden;
 }
 
 h1{
-  color:#ff0066;
-  margin-top:30px;
-}
-
-h3{
-  color:#ff3385;
+    margin-top:30px;
+    color:#ff0066;
 }
 
 .container{
-  margin-top:20px;
+    margin-top:20px;
 }
 
 /* Slideshow */
 .slideshow{
-  position:relative;
-  width:250px;
-  height:250px;
-  margin:auto;
+    position:relative;
+    width:250px;
+    height:250px;
+    margin:auto;
 }
 
 .slideshow img{
-  width:250px;
-  height:250px;
-  object-fit:cover;
-  border-radius:20px;
-  position:absolute;
-  opacity:0;
-  transition:opacity 1s;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+    position:absolute;
+    opacity:0;
+    transition:1s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* Button */
+/* Buttons */
 button{
-  padding:14px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:30px;
-  background:#ff0066;
-  color:white;
-  cursor:pointer;
-  margin-top:25px;
-  box-shadow:0 0 15px #ff4da6;
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:20px;
+}
+
+#yesBtn{
+    background:#ff0066;
+    color:white;
+}
+
+#noBtn{
+    background:black;
+    color:white;
+    position:absolute;
 }
 
 /* Hearts */
 .heart{
-  position:fixed;
-  top:-10px;
-  color:#ff4da6;
-  font-size:20px;
-  animation:fall linear infinite;
+    position:fixed;
+    top:-10px;
+    color:#ff4d6d;
+    font-size:20px;
+    animation:fall linear infinite;
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(100vh);
-  }
+    to{
+        transform:translateY(100vh);
+    }
 }
 </style>
 </head>
@@ -82,50 +86,69 @@ button{
 
 <div class="container">
 
-  <div class="slideshow">
-    <!-- Apni pics ke file names yahan likhna -->
+<div class="slideshow">
+    <!-- Yahan apni pics ke naam likho -->
     <img src="pic1.jpg">
     <img src="pic2.jpg">
-  </div>
-</button>
-/* Moving NO button */
-const noBtn = document.getElementById("noBtn");
+    <img src="pic3.jpg">
+</div>
 
-function moveButton(){
-  const maxX = window.innerWidth - noBtn.offsetWidth;
-  const maxY = window.innerHeight - noBtn.offsetHeight;
+<br>
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
-
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
-}
-
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
-    NO
-  
+<button id="yesBtn" onclick="alert('Yayyyyy ❤️😍')">YES 💖</button>
+<button id="noBtn">NO 😜</button>
 
 </div>
 
 <script>
+
 /* Slideshow */
 let slides = document.querySelectorAll(".slideshow img");
 let index = 0;
 slides[index].style.opacity = 1;
 
 setInterval(()=>{
-  slides[index].style.opacity = 0;
-  index = (index + 1) % slides.length;
-  slides[index].style.opacity = 1;
+    slides[index].style.opacity = 0;
+    index = (index + 1) % slides.length;
+    slides[index].style.opacity = 1;
 },2000);
 
-/* Moving NO button */
+
+/* Moving NO Button */
 const noBtn = document.getElementById("noBtn");
 
 function moveButton(){
-  const maxX = window.innerWidth - noBtn.offsetWidth;
-  const maxY = window.innerHeight - noBtn.offsetHeight;
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
 
-  const randomX = Math
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+
+/* Falling Hearts */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
