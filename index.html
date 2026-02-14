@@ -67,16 +67,21 @@ button:hover{
 }
 </style>
 </head>
-<div style="margin-top:30px;">
-  <button onclick="alert('😌 Good choice!')" 
-  style="padding:12px 25px;font-size:18px;background:#ff4d6d;color:white;border:none;border-radius:25px;cursor:pointer;">
-  YES
-  </button>
+<body>
 
-  <button id="noBtn"
-  style="padding:12px 25px;font-size:18px;background:gray;color:white;border:none;border-radius:25px;position:absolute;cursor:pointer;">
-  NO
-  </button>
+<div class="container">
+  <h1>For Aiza ❤️</h1>
+  <h3>You are truly special ✨</h3>
+
+  <div style="margin-top:30px;">
+    <button onclick="alert('😌 Good choice!')">
+      YES
+    </button>
+
+    <button id="noBtn" style="position:absolute;">
+      NO
+    </button>
+  </div>
 </div>
 
 <script>
@@ -95,58 +100,6 @@ button:hover{
 
   noBtn.addEventListener("mouseover", moveButton);
   noBtn.addEventListener("click", moveButton);
-</script>
-<body>
-
-<div class="container">
-    <h1>Aiza 💖</h1>
-    <h2>Our Beautiful Friendship ✨</h2>
-
-    <div class="slideshow">
-        <img src="pic1.jpg" class="slide" style="opacity:1;">
-        <img src="pic2.jpg" class="slide">
-    </div>
-
-    <h3>Will you always stay my best friend?</h3>
-    <button onclick="celebrate()">Yes 💞</button>
-</div>
-
-<script>
-// Slideshow
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-
-setInterval(() => {
-    slides[index].style.opacity = 0;
-    index = (index + 1) % slides.length;
-    slides[index].style.opacity = 1;
-}, 2500);
-
-// Falling hearts
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💗";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-}
-setInterval(createHeart, 300);
-
-// Final message
-function celebrate(){
-    document.body.innerHTML = `
-        <div style="margin-top:150px;">
-            <h1 style="color:#ff0066;text-shadow:0 0 20px #ff66a3;">
-                Yay Aiza! 🎉
-            </h1>
-            <h2>Forever Best Friends 💗</h2>
-            <h3>You are truly special ✨</h3>
-        </div>
-    `;
-}
 </script>
 
 </body>
