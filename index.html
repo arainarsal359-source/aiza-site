@@ -1,106 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Aiza 💖</title>
+<title>For Aiza ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
-    margin:0;
-    text-align:center;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ff99cc,#ffffff);
-    overflow:hidden;
+  margin:0;
+  text-align:center;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#ff9ccf,#ffffff);
+  overflow:hidden;
 }
-.container{
-    margin-top:40px;
-    padding:20px;
-}
+
 h1{
-    color:#ff0066;
-    text-shadow:0 0 15px #ff66a3;
-}
-h2,h3{
-    color:#ff3385;
+  color:#ff0066;
+  margin-top:30px;
 }
 
+h3{
+  color:#ff3385;
+}
+
+.container{
+  margin-top:20px;
+}
+
+/* Slideshow */
 .slideshow{
-    position:relative;
-    width:230px;
-    height:230px;
-    margin:auto;
+  position:relative;
+  width:250px;
+  height:250px;
+  margin:auto;
 }
+
 .slideshow img{
-    width:230px;
-    height:230px;
-    object-fit:cover;
-    border-radius:20px;
-    position:absolute;
-    opacity:0;
-    transition:opacity 1s;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  width:250px;
+  height:250px;
+  object-fit:cover;
+  border-radius:20px;
+  position:absolute;
+  opacity:0;
+  transition:opacity 1s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
+/* Button */
 button{
-    padding:14px 35px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    background:#ff0066;
-    color:white;
-    cursor:pointer;
-    margin-top:20px;
-    box-shadow:0 0 20px #ff66a3;
-}
-button:hover{
-    background:#cc0052;
+  padding:14px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:#ff0066;
+  color:white;
+  cursor:pointer;
+  margin-top:25px;
+  box-shadow:0 0 15px #ff4da6;
 }
 
+/* Hearts */
 .heart{
-    position:fixed;
-    top:-10px;
-    color:#ff4da6;
-    animation: fall linear infinite;
+  position:fixed;
+  top:-10px;
+  color:#ff4da6;
+  font-size:20px;
+  animation:fall linear infinite;
 }
+
 @keyframes fall{
-    to{ transform:translateY(100vh); }
+  to{
+    transform:translateY(100vh);
+  }
 }
 </style>
 </head>
+
 <body>
 
+<h1>For Aiza ❤️</h1>
+<h3>You are truly special ✨</h3>
+
 <div class="container">
-  <h1>For Aiza ❤️</h1>
-  <h3>You are truly special ✨</h3>
 
-  <div style="margin-top:30px;">
-
-     yes
-    </button>
-
-    <button id="noBtn" style="position:absolute;">
-      NO
-    </button>
+  <div class="slideshow">
+    <!-- Apni pics ke file names yahan likhna -->
+    <img src="pic1.jpg">
+    <img src="pic2.jpg">
+    <img src="pic3.jpg">
   </div>
+
+  <button id="noBtn" style="position:absolute;">
+    NO
+  </button>
+
 </div>
 
 <script>
-  const noBtn = document.getElementById("noBtn");
+/* Slideshow */
+let slides = document.querySelectorAll(".slideshow img");
+let index = 0;
+slides[index].style.opacity = 1;
 
-  function moveButton() {
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
+setInterval(()=>{
+  slides[index].style.opacity = 0;
+  index = (index + 1) % slides.length;
+  slides[index].style.opacity = 1;
+},2000);
 
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
+/* Moving NO button */
+const noBtn = document.getElementById("noBtn");
 
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-  }
+function moveButton(){
+  const maxX = window.innerWidth - noBtn.offsetWidth;
+  const maxY = window.innerHeight - noBtn.offsetHeight;
 
-  noBtn.addEventListener("mouseover", moveButton);
-  noBtn.addEventListener("click", moveButton);
-</script>
-
-</body>
-</html>
+  const randomX = Math
