@@ -1,154 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Aiza ❤️</title>
+<title>For Zuzuuu 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
     margin:0;
-    text-align:center;
     font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ffccd5,#fff0f3);
+    text-align:center;
+    background:linear-gradient(135deg,#89f7fe,#66a6ff);
     overflow:hidden;
+    color:white;
 }
 
+/* Title */
 h1{
-    margin-top:30px;
-    color:#ff0066;
+    margin-top:25px;
 }
 
-.container{
-    margin-top:20px;
-}
-
-/* Slideshow */
-.slideshow{
-    position:relative;
-    width:250px;
-    height:250px;
-    margin:auto;
-}
-
-.slideshow img{
-    width:250px;
-    height:250px;
-    object-fit:cover;
-    border-radius:20px;
-    position:absolute;
-    opacity:0;
-    transition:1s;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* Buttons */
-button{
-    padding:12px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    margin:20px;
-}
-
-#yesBtn{
-    background:#ff0066;
-    color:white;
-}
-
-#noBtn{
-    background:black;
-    color:white;
-    position:absolute;
-}
-
-/* Hearts */
-.heart{
-    position:fixed;
-    top:-10px;
-    color:#ff4d6d;
+/* Typing Text */
+.typing{
     font-size:20px;
-    animation:fall linear infinite;
+    border-right:2px solid white;
+    white-space:nowrap;
+    overflow:hidden;
+    width:0;
+    margin:auto;
+    animation:typing 4s steps(30,end) forwards, blink 1s infinite;
 }
-
-@keyframes fall{
-    to{
-        transform:translateY(100vh);
-    }
-}
-</style>
-</head>
-
-<body>
-
-<h1>For Aiza ❤️</h1>
-<h3>You are truly special ✨</h3>
-
-<div class="container">
-
-<div class="slideshow">
-    <!-- Yahan apni pics ke naam likho -->
-    <img src="pic1.jpg">
-    <img src="pic2.jpg">
-    <img src="pic3.jpg">
-</div>
-
-<br>
-
-<button id="yesBtn" onclick="alert('Yayyyyy ❤️😍')">YES 💖</button>
-<button id="noBtn">NO 😜</button>
-
-</div>
-
-<script>
-
-/* Slideshow */
-let slides = document.querySelectorAll(".slideshow img");
-let index = 0;
-slides[index].style.opacity = 1;
-
-setInterval(()=>{
-    slides[index].style.opacity = 0;
-    index = (index + 1) % slides.length;
-    slides[index].style.opacity = 1;
-},2000);
-
-
-/* Moving NO Button */
-const noBtn = document.getElementById("noBtn");
-
-function moveButton(){
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
-
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
-
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-}
-
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
-
-
-/* Falling Hearts */
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random()*3+2) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
-}
-
-setInterval(createHeart,300);
-
-</script>
-
-</body>
-</html>
+@keyframes typing{
+    from{width
