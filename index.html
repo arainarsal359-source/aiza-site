@@ -6,86 +6,80 @@
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    text-align:center;
-    background:linear-gradient(135deg,#89f7fe,#66a6ff);
-    overflow:hidden;
-    color:white;
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#89f7fe,#66a6ff);
+overflow:hidden;
+color:white;
 }
 
-h1{
-    margin-top:25px;
-}
+h1{margin-top:20px;}
 
-/* Slideshow */
 .slideshow{
-    position:relative;
-    width:250px;
-    height:250px;
-    margin:20px auto;
+position:relative;
+width:250px;
+height:250px;
+margin:20px auto;
 }
 
 .slideshow img{
-    width:250px;
-    height:250px;
-    object-fit:cover;
-    border-radius:20px;
-    position:absolute;
-    opacity:0;
-    transition:1s;
-    cursor:pointer;
+width:250px;
+height:250px;
+object-fit:cover;
+border-radius:20px;
+position:absolute;
+opacity:0;
+transition:1s;
+cursor:pointer;
 }
 
-/* Zoom */
 .zoom{
-    transform:scale(1.2);
-    z-index:5;
+transform:scale(1.2);
+z-index:5;
 }
 
-/* Buttons */
 button{
-    padding:12px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    margin:15px;
+padding:12px 25px;
+font-size:16px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+margin:10px;
 }
 
 #yesBtn{
-    background:white;
-    color:#0077ff;
+background:white;
+color:#0077ff;
 }
 
 #noBtn{
-    background:black;
-    color:white;
-    position:absolute;
+background:black;
+color:white;
+position:relative;
 }
 
-/* Hearts */
-.heart{
-    position:fixed;
-    top:-10px;
-    font-size:20px;
-    animation:fall linear infinite;
-}
-@keyframes fall{
-    to{ transform:translateY(100vh); }
+.firework{
+position:fixed;
+width:10px;
+height:10px;
+background:yellow;
+border-radius:50%;
+animation:boom 1s ease-out forwards;
 }
 
-/* Letter */
-.letter{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background:white;
-    color:black;
-    padding:20px;
-    border-radius:15px;
+@keyframes boom{
+0%{transform:scale(1);opacity:1;}
+100%{transform:scale(15);opacity:0;}
 }
+
+textarea{
+margin-top:15px;
+padding:10px;
+border-radius:10px;
+width:80%;
+}
+
 </style>
 </head>
 
@@ -95,61 +89,105 @@ button{
 <p>You are my favourite bestie ✨</p>
 
 <div class="slideshow">
-    <img src="pic1.jpg">
-    <img src="pic2.jpg">
-    <img src="pic3.jpg">
+<img src="pic1.jpg">
+<img src="pic2.jpg">
+<img src="pic3.jpg">
 </div>
 
-<button id="yesBtn">Bestie Forever 🤞</button>
-<button id="noBtn">NO 😜</button>
+<div id="questionBox">
+<h2 id="question">Tum mere dost hamesha raho gi na? 🥺</h2>
+<button id="yesBtn">Haan bilkul 💙</button>
+<button id="noBtn">Soch lo 😜</button>
+</div>
+
+<div id="extra"></div>
 
 <script>
 
 /* Slideshow */
 let slides=document.querySelectorAll(".slideshow img");
 let index=0;
+
+if(slides.length>0){
 slides[0].style.opacity=1;
 
 setInterval(function(){
-    slides[index].style.opacity=0;
-    index=(index+1)%slides.length;
-    slides[index].style.opacity=1;
+slides[index].style.opacity=0;
+index=(index+1)%slides.length;
+slides[index].style.opacity=1;
 },2000);
-
-/* Zoom */
-slides.forEach(function(img){
-    img.addEventListener("click",function(){
-        img.classList.toggle("zoom");
-    });
-});
-
-/* Move NO */
-let noBtn=document.getElementById("noBtn");
-noBtn.addEventListener("mouseover",function(){
-    noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";
-    noBtn.style.top=Math.random()*(window.innerHeight-50)+"px";
-});
-
-/* Hearts */
-function createHeart(){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💙";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(Math.random()*3+2)+"s";
-    document.body.appendChild(heart);
-    setTimeout(function(){heart.remove();},5000);
 }
-setInterval(createHeart,300);
 
-/* Letter */
-document.getElementById("yesBtn").addEventListener("click",function(){
-    let letter=document.createElement("div");
-    letter.className="letter";
-    letter.innerHTML="Zuzuuu 🤍<br><br>Thank you for being my bestie forever ✨";
-    document.body.appendChild(letter);
-    setTimeout(function(){letter.remove();},4000);
+/* Zoom on click */
+slides.forEach(img=>{
+img.onclick=function(){
+img.classList.toggle("zoom");
+}
 });
+
+/* Questions System */
+let step=0;
+
+let questions=[
+"Tum mujhe ignore to nahi karogi na? 😏",
+"Tum sach me bestie ho na meri? 💙"
+];
+
+let noTexts=[
+"Soch lo 😜",
+"Phir se soch lo 😂",
+"Dobara soch lo 🤭",
+"Tum mana kar hi nahi sakti 😎",
+"Acha sach bolo 🤨"
+];
+
+let question=document.getElementById("question");
+let yesBtn=document.getElementById("yesBtn");
+let noBtn=document.getElementById("noBtn");
+let extra=document.getElementById("extra");
+
+yesBtn.onclick=function(){
+
+showFirework();
+
+if(step < questions.length){
+question.innerText=questions[step];
+step++;
+}
+else{
+question.innerText="Tumhe mujh me kya bura lagta hai? 🤔";
+
+yesBtn.innerText="Mujhe kuch bura nahi lagta 💖";
+noBtn.style.display="none";
+
+let textarea=document.createElement("textarea");
+textarea.placeholder="Agar 2 cheezein buri lagti hain to yahan likho...";
+textarea.rows=3;
+extra.appendChild(textarea);
+}
+};
+
+noBtn.onmouseover=function(){
+let randomX=Math.random()*300;
+let randomY=Math.random()*300;
+noBtn.style.position="absolute";
+noBtn.style.left=randomX+"px";
+noBtn.style.top=randomY+"px";
+noBtn.innerText=noTexts[Math.floor(Math.random()*noTexts.length)];
+};
+
+/* Firework */
+function showFirework(){
+let fw=document.createElement("div");
+fw.className="firework";
+fw.style.left=Math.random()*window.innerWidth+"px";
+fw.style.top=Math.random()*window.innerHeight+"px";
+document.body.appendChild(fw);
+
+setTimeout(()=>{
+fw.remove();
+},1000);
+}
 
 </script>
 
